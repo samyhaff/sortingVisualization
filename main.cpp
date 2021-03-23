@@ -11,7 +11,7 @@ const int SCREEN_HEIGHT = 1080;
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
 
-const int NB_OF_ELEMENTS = 40; 
+const int NB_OF_ELEMENTS = 200; 
 int a[NB_OF_ELEMENTS];
 const int RECT_WIDTH = SCREEN_WIDTH / NB_OF_ELEMENTS;
 
@@ -97,6 +97,24 @@ void selectionSort()
     }  
 }  
 
+void insertionSort() 
+{ 
+    int i, key, j; 
+    for (i = 1; i < NB_OF_ELEMENTS; i++)
+    { 
+        key = a[i]; 
+        j = i - 1; 
+ 
+        while (j >= 0 && a[j] > key)
+        { 
+            a[j + 1] = a[j]; 
+            j = j - 1; 
+        } 
+        a[j + 1] = key; 
+        drawArray();
+    } 
+} 
+
 int main(int argc, char *args[])
 {
     init();
@@ -108,6 +126,8 @@ int main(int argc, char *args[])
         bubbleSort();
     else if (strcmp(args[1], "selection") == 0)
         selectionSort();
+    else if (strcmp(args[1], "insertion") == 0)
+        insertionSort();
 
     close();
 
