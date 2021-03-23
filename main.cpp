@@ -45,6 +45,8 @@ void close()
 
 void drawArray() 
 {
+    SDL_Delay(50);
+
     // clear the screen
     SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0x00);
     SDL_RenderClear(gRenderer);
@@ -74,11 +76,26 @@ void bubbleSort()
         {
             if (a[j] > a[j + 1])
                 swap(j, j + 1);
-            SDL_Delay(10);
             drawArray();
         }
     }
 }
+
+void selectionSort()  
+{  
+    int i, j, min_idx;  
+  
+    for (i = 0; i < NB_OF_ELEMENTS - 1; i++)  
+    {  
+        min_idx = i;  
+        for (j = i + 1; j < NB_OF_ELEMENTS; j++)  
+        if (a[j] < a[min_idx])  
+            min_idx = j;  
+  
+        swap(min_idx, i);  
+        drawArray();
+    }  
+}  
 
 int main(int argc, char *args[])
 {
@@ -86,9 +103,11 @@ int main(int argc, char *args[])
     generateArray();
 
     bool quit = false;
-    SDL_Event e;
 
-    bubbleSort();
+    if (strcmp(args[1], "bubble") == 0)
+        bubbleSort();
+    else if (strcmp(args[1], "selection") == 0)
+        selectionSort();
 
     close();
 
