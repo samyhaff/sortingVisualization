@@ -1,5 +1,4 @@
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <iostream>
 #include <cstdlib>
 
@@ -39,7 +38,6 @@ void close()
     gWindow = NULL;
     gRenderer = NULL;
 
-    IMG_Quit();
     SDL_Quit();
 }
 
